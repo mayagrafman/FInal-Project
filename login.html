@@ -2,17 +2,41 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="../general.css">
+  <title>Log In</title>
+  <link rel="stylesheet" href="logIn.css">
 </head>
 
 <body>
-  <h1>LOGIN</h1>
-  Username: <input id="usernameInput">
-  <br>
-  password: <input id="passwordInput">
-  <br>
-  <button id="loginButton">log in</button>
+  <iframe id="headerIframe" src="header.html"></iframe>
 
-  <script type="module" src="login.js"></script>
+  <div class="container">
+
+    <h1>Log In</h1>
+
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td><input type="text" id="usernameInput"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="text" id="passwordInput"></td>
+      </tr>
+    </table>
+
+    <br>
+    
+    <button id="submitButton">Submit</button>
+
+    <br>
+
+    <div id="messageDiv"></div>
+
+  </div>
+
+
+  <script type="module" src="logIn.js"></script>
 </body>
 
 </html>

@@ -7,22 +7,14 @@ class Program
   static void Main()
   {
     var port = 5000;
-    int port = 5000;
     var server = new Server(port);
-    // var counter = 0;
-    string[] usernames = [];
-    string[] passwords = [];
-    string[] ids = [];  
+  
     Console.WriteLine("The server is running");
     Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/signup.html");
 
+    // var database = new Database();
     var database = new Database();
-    var counter = 0;
-    string[] usernames = [];
-    string[] passwords = [];
-    string[] ids = [];   
-     Console.WriteLine("The server is running");
-    Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/login.html");
+
 
     while (true)
     {
@@ -45,84 +37,42 @@ class Program
       {
         try
         {
-  
-          if(request.Path=="signup"){
-            (string username,string password) = request.GetBody<(string,string)>();
-           usernames = [..usernames, username];
-           passwords = [..passwords, password];
-           ids = [..ids, Guid.NewGuid().ToString()];
-           Console.WriteLine(username + ", "+ password);
-
-          }
-            else if(request.Path == "login"){
-           (string username,string password) = request.GetBody<(string,string)>();
-
-           bool foundUser=false;
-           string userId = "";
-
-           for(int i = 0; i<usernames.Length; i++){
-           
-           if (username==usernames[0] && password==passwords[0]){
-
-            foundUser=true;
-            userId = ids [i];
-           }
-           }
-          
-          response.Send((foundUser,userId));
-          }
-          
-          response.SetStatusCode(405);
-
-          database.SaveChanges();
-          if (request.Path == "message")
+     if (request.Path == "signUp")
           {
-            string text = request.GetBody<string>();
-            Console.WriteLine(" recieved " + text + " from the client ");
-          }
-          else if (request.Path == "setCounter"){
-            int difference = request.GetBody<int>();
-            counter += difference;
-            response.Send(counter);
-          }
-        
-          else if(request.Path=="signup"){
-            (string username,string password) = request.GetBody<(string,string)>();
-           usernames = [..usernames, username];
-           passwords = [..passwords, password];
-           ids = [..ids, Guid.NewGuid().ToString()];
-           Console.WriteLine(username + ", "+ password);
+            var (username, password) = request.GetBody<(string, string)>();
 
+            var userExists = database.Users.Any(user =>
+              user.Username == username
+            );
+
+            if (!userExists)
+            {
+              var userId = Guid.NewGuid().ToString();
+              database.Users.Add(new User(userId, username, password));
+              response.Send(userId);
+            }
           }
-            else if(request.Path == "login"){
-           (string username,string password) = request.GetBody<(string,string)>();
+          else if (request.Path == "logIn")
+          {
+            var (username, password) = request.GetBody<(string, string)>();
 
-           bool foundUser=false;
-           string userId = "";
+            var user = database.Users.First(
+              user => user.Username == username && user.Password == password
+            );
 
-           for(int i = 0; i<usernames.Length; i++){
-           
-           if (username==usernames[0] && password==passwords[0]){
+            var userId = user.Id;
 
-            foundUser=true;
-            userId = ids [i];
-           }
-           }
-          
-          response.Send((foundUser,userId));
+            response.Send(userId);
           }
-          else if (request.Path == "getUsername"){
+          else if (request.Path == "getUsername")
+          {
             string userId = request.GetBody<string>();
 
-            int i=0;
-            while(ids[i]!=userId)
-            {
-              i++;
-            }
-           
-           string username = usernames[i];
-           
-           response.Send(username);
+            var user = database.Users.Find(userId);
+
+            var username = user?.Username;
+
+            response.Send(username);
           }
         }
         catch (Exception exception)
@@ -134,4 +84,21 @@ class Program
       response.Close();
     }
   }
+
+
+class Database() : DbBase("database")
+{
+  /*──────────────────────────────╮
+  │ Add your database tables here │
+  ╰──────────────────────────────*/
+  public DbSet<User> Users { get; set; } = default!;
+  // public DbSet<Book> Books { get; set; } = default!;
+  // public DbSet<Favorite> Favorites { get; set; } = default!;
+}
+class User(string id, string username, string password)
+{
+  [Key] public string Id { get; set; } = id;
+  public string Username { get; set; } = username;
+  public string Password { get; set; } = password;
+}
 }
