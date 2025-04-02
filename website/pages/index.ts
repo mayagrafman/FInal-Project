@@ -1,9 +1,21 @@
 import { send } from "../utilities";
 
-let welcomeDiv = document.getElementById("welcomeDiv") as HTMLDivElement;
+let citiesDiv = document.querySelector("#citiesDiv") as HTMLDivElement;
 
-if(localStorage.getItem("userId") !=null){
-let username =await send("getUsername", localStorage.getItem("userId")) as string;
+let cities = await send("getCities", []) ;
 
-welcomeDiv.innerText = "welcome " + username +"!";
+console.log(cities);
+
+for (let i = 0; i < cities.length; i++) {
+    let a = document.createElement("a");
+    a.href = "city.html?cityId=" + cities[i].Id;
+    citiesDiv.appendChild(a);
+
+    let img = document.createElement("img");
+    img.src = cities[i].Image;
+    a.appendChild(img);
+
+    let div = document.createElement("div");
+    div.innerText = cities[i].Name;
+    a.appendChild(div);
 }
