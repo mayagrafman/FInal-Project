@@ -8,7 +8,7 @@ class Program
   {
     var port = 5000;
     var server = new Server(port);
-  
+
     Console.WriteLine("The server is running");
     Console.WriteLine($"Main Page: http://localhost:{port}/website/pages/index.html");
 
@@ -37,7 +37,15 @@ class Program
       {
         try
         {
-     if (request.Path == "signUp")
+          if (request.Path == "verifyUserId")
+          {
+            var userId = request.GetBody<string>();
+
+            var varified = database.Users.Any(user => user.Id == userId);
+
+            response.Send(varified);
+          }
+          else if (request.Path == "signUp")
           {
             var (username, password) = request.GetBody<(string, string)>();
 
@@ -74,6 +82,8 @@ class Program
 
             response.Send(username);
           }
+
+          database.SaveChanges();
         }
         catch (Exception exception)
         {
@@ -86,19 +96,19 @@ class Program
   }
 
 
-class Database() : DbBase("database")
-{
-  /*──────────────────────────────╮
-  │ Add your database tables here │
-  ╰──────────────────────────────*/
-  public DbSet<User> Users { get; set; } = default!;
-  // public DbSet<Book> Books { get; set; } = default!;
-  // public DbSet<Favorite> Favorites { get; set; } = default!;
-}
-class User(string id, string username, string password)
-{
-  [Key] public string Id { get; set; } = id;
-  public string Username { get; set; } = username;
-  public string Password { get; set; } = password;
-}
+  class Database() : DbBase("database")
+  {
+    /*──────────────────────────────╮
+    │ Add your database tables here │
+    ╰──────────────────────────────*/
+    public DbSet<User> Users { get; set; } = default!;
+    // public DbSet<Book> Books { get; set; } = default!;
+    // public DbSet<Favorite> Favorites { get; set; } = default!;
+  }
+  class User(string id, string username, string password)
+  {
+    [Key] public string Id { get; set; } = id;
+    public string Username { get; set; } = username;
+    public string Password { get; set; } = password;
+  }
 }

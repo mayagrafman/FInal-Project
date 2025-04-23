@@ -1,4 +1,4 @@
-#passwordInput {
+/* #passwordInput {
     -webkit-text-security: disc;
   }
   
@@ -10,4 +10,79 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
+
+
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+#headerIframe {
+  width: 100%;
+  height: 60px;
+  border: none;
+}
+
+.container {
+  background-color: white;
+  padding: 40px;
+  margin: 80px auto;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+td {
+  padding: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+#passwordInput {
+  -webkit-text-security: disc;
+}
+
+button#loginButton {
+  background-color: #5b86e5;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#loginButton:hover {
+  background-color: #4a74d3;
+}
+
+#messageDiv {
+  margin-top: 15px;
+  color: red;
+  font-size: 14px;
+}

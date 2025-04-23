@@ -5,11 +5,14 @@ let passwordInput = document.getElementById("passwordInput")! as HTMLInputElemen
 let loginButton = document.getElementById("loginButton")! as HTMLButtonElement;
 
 loginButton.onclick = async function() {
-   let [userfound, userId] = await send("login", [usernameInput.value, passwordInput.value]) as [boolean,string];
-   console.log("user found:" + userfound)
 
-if(userfound){
+   let userId = await send("logIn", [usernameInput.value, passwordInput.value]) as string | null;
+
+if(userId != null){
    localStorage.setItem("userId", userId);
+   location.href = "index.html";
+
 }
+
 };
 
