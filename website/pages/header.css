@@ -21,11 +21,10 @@
     color: transparent;
     text-decoration: none;
   }
-  
   h1 {
     font-family: "title";
     font-weight: lighter;
-    color: black;
+    color: purple;
     line-height: 50%;
   }
   
@@ -38,3 +37,4 @@
   .hidden {
     display: none !important;
   }
+  

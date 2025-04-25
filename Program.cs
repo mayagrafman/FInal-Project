@@ -14,7 +14,12 @@ class Program
 
     // var database = new Database();
     var database = new Database();
+    if (database.IsNewlyCreated())
+    {
+      database.Cities.Add(new City("Tel Aviv", "/website/images/tel_aviv.jpg"));
 
+      database.SaveChanges();
+    }
 
     while (true)
     {
@@ -102,8 +107,8 @@ class Program
     │ Add your database tables here │
     ╰──────────────────────────────*/
     public DbSet<User> Users { get; set; } = default!;
-    // public DbSet<Book> Books { get; set; } = default!;
-    // public DbSet<Favorite> Favorites { get; set; } = default!;
+    public DbSet<City> Cities { get; set; } = default!;
+
   }
   class User(string id, string username, string password)
   {
@@ -111,4 +116,12 @@ class Program
     public string Username { get; set; } = username;
     public string Password { get; set; } = password;
   }
+
+  class City(string name, string image)
+  {
+    [Key] public int Id { get; set; } = default!;
+    public string Name { get; set; } = name;
+    public string Image { get; set; } = image;
+  }
+
 }

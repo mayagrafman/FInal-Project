@@ -1,8 +1,9 @@
 import { send } from "../utilities";
+import { City } from "./types";
 
 let citiesDiv = document.querySelector("#citiesDiv") as HTMLDivElement;
 
-let cities = await send("getCities", []) ;
+let cities = await send("getCities", []) as City[];
 
 console.log(cities);
 

@@ -86,3 +86,10 @@ button#loginButton:hover {
   color: red;
   font-size: 14px;
 }
+
+#signupButton {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
