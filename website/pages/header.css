@@ -6,16 +6,16 @@
   body {
     overflow: hidden;
   }
-  
   .header {
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px 0 20px;
-    background-color:rgb(188, 182, 171);
+    background: linear-gradient(to right, #ff9a9e, #fec3b2, #ffe2e8); /* אומברה ורודה */
     font-weight: 700;
   }
+  
   
   a {
     color: transparent;
@@ -24,7 +24,7 @@
   h1 {
     font-family: "title";
     font-weight: lighter;
-    color: purple;
+    color: rgba(19, 7, 18, 0.741);
     line-height: 50%;
   }
   

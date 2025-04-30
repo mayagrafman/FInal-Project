@@ -17,6 +17,11 @@ class Program
     if (database.IsNewlyCreated())
     {
       database.Cities.Add(new City("Tel Aviv", "/website/images/tel_aviv.jpg"));
+      database.Hotels.Add(new Hotel("Cucu Hotel", "/website/images/cucu_hotel.webp", 1));
+
+
+      database.Cities.Add(new City("Petah Tikva", "/website/images/petah_tikva.jpg"));
+
 
       database.SaveChanges();
     }
@@ -87,6 +92,30 @@ class Program
 
             response.Send(username);
           }
+           else if (request.Path == "getCities")
+          {
+            var cities = database.Cities.ToArray();
+
+            response.Send(cities);
+          }
+             else if (request.Path == "getHotels")
+          {
+            var cityId = request.GetBody<int>();
+            var hotels = database
+              .Hotels
+              .Where(hotel => hotel.CityId == cityId)
+              .ToArray();
+            response.Send(hotels);
+          }
+            else if (request.Path == "getHotel")
+          {
+            var hotelId = request.GetBody<int>();
+
+            var hotel = database.Hotels.Find(hotelId);
+
+            response.Send(hotel);
+          }
+       
 
           database.SaveChanges();
         }
@@ -108,6 +137,8 @@ class Program
     ╰──────────────────────────────*/
     public DbSet<User> Users { get; set; } = default!;
     public DbSet<City> Cities { get; set; } = default!;
+    public DbSet<Hotel> Hotels { get; set; } = default!;
+
 
   }
   class User(string id, string username, string password)
@@ -123,5 +154,13 @@ class Program
     public string Name { get; set; } = name;
     public string Image { get; set; } = image;
   }
-
+ 
+ class Hotel(string name, string image, int cityId)
+{
+  [Key] public int Id { get; set; } = default!;
+  public string Name { get; set; } = name;
+  public string Image { get; set; } = image;
+  public int CityId { get; set; } = cityId;
+  [ForeignKey("CityId")] public City City { get; set; } = default!;
+}
 }
