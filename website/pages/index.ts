@@ -13,6 +13,7 @@ for (let i = 0; i < cities.length; i++) {
     citiesDiv.appendChild(a);
 
     let img = document.createElement("img");
+    img.classList.add("cityImg");
     img.src = cities[i].Image;
     a.appendChild(img);
 

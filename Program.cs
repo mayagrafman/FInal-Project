@@ -17,10 +17,12 @@ class Program
     if (database.IsNewlyCreated())
     {
       database.Cities.Add(new City("Tel Aviv", "/website/images/tel_aviv.jpg"));
-      database.Hotels.Add(new Hotel("Cucu Hotel", "/website/images/cucu_hotel.webp", 1));
+      database.Hotels.Add(new Hotel("Amare hall", "/website/images/amare.", 1));
 
 
       database.Cities.Add(new City("Petah Tikva", "/website/images/petah_tikva.jpg"));
+
+      database.Cities.Add(new City("Jerusalem", "/website/images/Jerusalem.jpg"));
 
 
       database.SaveChanges();
