@@ -2,7 +2,7 @@ export type City = {
     Id: number,
     Name: string,
     Image: string,
-  };
+  }
 
   export type Hotel = {
     Id: number,
@@ -11,3 +11,8 @@ export type City = {
     City: City,
   }
   
+  export type Reservation = {
+    Id: number,
+    Date: string,
+    Hotel: Hotel,
+  }

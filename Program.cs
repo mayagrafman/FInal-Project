@@ -21,7 +21,7 @@ class Program
 
       database.Cities.Add(new City("Petah Tikva", "/website/images/petah_tikva.jpg"));
 
-      database.Cities.Add(new City("Jerusalem", "/website/images/Jerusalem.jpg"));
+      database.Cities.Add(new City("Haifa", "/website/images/Haifa.jpg"));
 
 
       database.SaveChanges();
@@ -116,6 +116,46 @@ class Program
 
             response.Send(hotel);
           }
+                 else if (request.Path == "getDates")
+          {
+            var hotelId = request.GetBody<int>();
+            var hotel = database.Hotels.Find(hotelId);
+            var reservations = database
+              .Reservations
+              .Where(res => res.HotelId == hotelId)
+              .Select(res => res.Date)
+              .ToArray();
+            response.Send(reservations);
+          }
+          else if (request.Path == "addReservation")
+          {
+            var (date, userId, hotelId) = request.GetBody<(string, string, int)>();
+            var exists = database
+              .Reservations
+              .Any(res => res.HotelId == hotelId && res.Date == date);
+            if (!exists)
+            {
+              database.Reservations.Add(new Reservation(date, userId, hotelId));
+            }
+            var success = !exists;
+            response.Send(success);
+          }
+          else if (request.Path == "getReservations")
+          {
+            var userId = request.GetBody<string>();
+
+            var reservations = database.Reservations.Where(res => res.UserId == userId).ToArray();
+
+            response.Send(reservations);
+          }
+          else if (request.Path == "unbook")
+          {
+            var resId = request.GetBody<int>();
+
+            var res = database.Reservations.Find(resId)!;
+
+            database.Remove(res);
+          }
        
 
           database.SaveChanges();
@@ -139,6 +179,7 @@ class Program
     public DbSet<User> Users { get; set; } = default!;
     public DbSet<City> Cities { get; set; } = default!;
     public DbSet<Hotel> Hotels { get; set; } = default!;
+    public DbSet<Reservation> Reservations { get; set; } = default!;
 
 
   }
@@ -163,5 +204,15 @@ class Program
   public string Image { get; set; } = image;
   public int CityId { get; set; } = cityId;
   [ForeignKey("CityId")] public City City { get; set; } = default!;
+}
+
+class Reservation(string date, string userId, int hotelId)
+{
+  [Key] public int Id { get; set; } = default!;
+  public string Date { get; set; } = date;
+  public string UserId { get; set; } = userId;
+  [ForeignKey("UserId")] public User User { get; set; } = default!;
+  public int HotelId { get; set; } = hotelId;
+  [ForeignKey("HotelId")] public Hotel Hotel { get; set; } = default!;
 }
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="../styles/general.css">
+  <link rel="stylesheet" href="hotel.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <iframe id="headerIframe" src="header.html"></iframe>
+
+  <div class="container">
+    <h1 id="hotelH1"></h1>
+    <div id="ratingDiv"></div>
+    <br>
+    <input id="ratingInput" placeholder="0 - 5"><button id="ratingButton" disabled>Rate</button>
+
+    <br>
+    <br>
+
+    <label>Reserve an event hall for </label>
+    <input type="date" id="resInput"><button id="resButton" disabled>Reserve</button>
+
+    <br>
+    <br>
+
+    <img id="hotelImg">
+
+    <br>
+    <br>
+
+    <div>Already reserved on:</div>
+    <ul id="resUl"></ul>
+  </div>
+
+  <script type="module" src="hotel.js"></script>
+</body>
+
+</html>
