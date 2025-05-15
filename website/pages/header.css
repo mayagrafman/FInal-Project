@@ -38,3 +38,15 @@
     display: none !important;
   }
   
+#logInButton,
+#signUpButton {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(194, 125, 125, 0.1);
+  color: rgb(85, 43, 43);
+}
