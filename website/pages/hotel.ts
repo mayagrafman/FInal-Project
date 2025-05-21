@@ -61,12 +61,13 @@ async function drawStars() {
     img.classList.add("star");
     ratingDiv.appendChild(img);
 
+
     if (i <= rating) {
       img.src = "/website/images/full.star.png";
     } else if (i - 0.5 <= rating) {
       img.src = "/website/images/half.star.png";
     } else {
-      img.src = "/website/images/empty.star.png";
+      img.src = "/website/images/empty.star.jpg";
     }
   }
 }

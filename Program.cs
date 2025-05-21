@@ -93,13 +93,13 @@ class Program
 
             response.Send(username);
           }
-           else if (request.Path == "getCities")
+          else if (request.Path == "getCities")
           {
             var cities = database.Cities.ToArray();
 
             response.Send(cities);
           }
-             else if (request.Path == "getHotels")
+          else if (request.Path == "getHotels")
           {
             var cityId = request.GetBody<int>();
             var hotels = database
@@ -108,7 +108,7 @@ class Program
               .ToArray();
             response.Send(hotels);
           }
-            else if (request.Path == "getHotel")
+          else if (request.Path == "getHotel")
           {
             var hotelId = request.GetBody<int>();
 
@@ -116,7 +116,7 @@ class Program
 
             response.Send(hotel);
           }
-                 else if (request.Path == "getDates")
+          else if (request.Path == "getDates")
           {
             var hotelId = request.GetBody<int>();
             var hotel = database.Hotels.Find(hotelId);
@@ -156,7 +156,53 @@ class Program
 
             database.Remove(res);
           }
-       
+
+          else if (request.Path == "getRating")
+          {
+            var (userId, hotelId) = request.GetBody<(string, int)>();
+
+            var value = database.Ratings
+              .FirstOrDefault(rating => rating.UserId == userId && rating.HotelId == hotelId)?
+              .Value;
+
+            response.Send(value);
+          }
+         
+           else if (request.Path == "rate")
+          {
+           var (rating, userId, hotelId) = request.GetBody<(double, string, int)>();
+
+
+          var existrating = database.Ratings.FirstOrDefault(rating => rating.UserId == userId && rating.HotelId == hotelId);
+
+
+          if(existrating != null)
+          {
+            existrating.Value = rating;
+          }
+          else
+          {
+            var newRating = new Rating(rating, userId, hotelId);
+            database.Ratings.Add(newRating);
+          }
+            database.SaveChanges();
+            response.Send("Rating added");
+          }
+         
+         else if (request.Path == "getAverage")
+          {
+            var hotelId = request.GetBody<int>();
+
+
+            var average = database.Ratings
+              .Where(rating => rating.HotelId == hotelId)
+              .Average(rating => rating.Value);
+
+
+            response.Send(average);
+          }
+
+
 
           database.SaveChanges();
         }
@@ -180,6 +226,7 @@ class Program
     public DbSet<City> Cities { get; set; } = default!;
     public DbSet<Hotel> Hotels { get; set; } = default!;
     public DbSet<Reservation> Reservations { get; set; } = default!;
+    public DbSet<Rating> Ratings { get; set; } = default!;
 
 
   }
@@ -196,23 +243,35 @@ class Program
     public string Name { get; set; } = name;
     public string Image { get; set; } = image;
   }
- 
- class Hotel(string name, string image, int cityId)
-{
-  [Key] public int Id { get; set; } = default!;
-  public string Name { get; set; } = name;
-  public string Image { get; set; } = image;
-  public int CityId { get; set; } = cityId;
-  [ForeignKey("CityId")] public City City { get; set; } = default!;
-}
 
-class Reservation(string date, string userId, int hotelId)
+  class Hotel(string name, string image, int cityId)
+  {
+    [Key] public int Id { get; set; } = default!;
+    public string Name { get; set; } = name;
+    public string Image { get; set; } = image;
+    public int CityId { get; set; } = cityId;
+    [ForeignKey("CityId")] public City City { get; set; } = default!;
+  }
+
+  class Reservation(string date, string userId, int hotelId)
+  {
+    [Key] public int Id { get; set; } = default!;
+    public string Date { get; set; } = date;
+    public string UserId { get; set; } = userId;
+    [ForeignKey("UserId")] public User User { get; set; } = default!;
+    public int HotelId { get; set; } = hotelId;
+    [ForeignKey("HotelId")] public Hotel Hotel { get; set; } = default!;
+  }
+
+
+class Rating(double value, string userId, int hotelId)
 {
   [Key] public int Id { get; set; } = default!;
-  public string Date { get; set; } = date;
+  public double Value { get; set; } = value;
   public string UserId { get; set; } = userId;
   [ForeignKey("UserId")] public User User { get; set; } = default!;
   public int HotelId { get; set; } = hotelId;
   [ForeignKey("HotelId")] public Hotel Hotel { get; set; } = default!;
+
 }
 }
