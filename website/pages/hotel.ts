@@ -14,6 +14,8 @@ let resInput = document.querySelector("#resInput") as HTMLInputElement;
 let resButton = document.querySelector("#resButton") as HTMLButtonElement;
 let hotelImg = document.querySelector("#hotelImg") as HTMLImageElement;
 let resUl = document.querySelector("#resUl") as HTMLUListElement;
+let mapIframe = document.querySelector("#mapIframe") as HTMLIFrameElement;
+
 
 resInput.onchange = function () {
   if (userId != null && resInput.value != "") {
@@ -67,7 +69,7 @@ async function drawStars() {
     } else if (i - 0.5 <= rating) {
       img.src = "/website/images/half.star.png";
     } else {
-      img.src = "/website/images/empty.star.jpg";
+      img.src = "/website/images/empty.star.png";
     }
   }
 }
@@ -75,6 +77,19 @@ async function drawStars() {
 let hotel = await send("getHotel", hotelId) as Hotel;
 hotelH1.innerText = hotel.Name;
 hotelImg.src = hotel.Image;
+
+console.log(hotel.MapUrl);
+mapIframe.src = hotel.MapUrl;
+
+// if (hotel.MapUrl) {
+//   let iframe = document.createElement("iframe");
+//   iframe.width = "300";
+//   iframe.height = "200";
+//   iframe.loading = "lazy";
+//   iframe.referrerPolicy = "no-referrer-when-downgrade";
+//   iframe.src = hotel.MapUrl;
+//   mapDiv.appendChild(iframe);
+// } 
 
 if (userId != null) {
   let ratingValue = await send("getRating", [userId, hotelId]) as string | null;

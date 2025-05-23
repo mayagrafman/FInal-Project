@@ -9,6 +9,8 @@ export type City = {
     Name: string,
     Image: string,
     City: City,
+    MapUrl: string, 
+
   }
   
   export type Reservation = {
@@ -16,3 +18,5 @@ export type City = {
     Date: string,
     Hotel: Hotel,
   }
+
+  

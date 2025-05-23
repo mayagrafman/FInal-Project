@@ -5,6 +5,8 @@ let passwordInput = document.getElementById("passwordInput")! as HTMLInputElemen
 let loginButton = document.getElementById("loginButton")! as HTMLButtonElement;
 let messageDiv = document.getElementById("messageDiv") as HTMLDivElement;
 let signupButton = document.getElementById("signupButton")! as HTMLButtonElement;
+let ratingInput = document.querySelector("#ratingInput") as HTMLInputElement;
+
 
 loginButton.onclick = async function() {
   let userId = await send("logIn", [usernameInput.value, passwordInput.value]) as string | null;
