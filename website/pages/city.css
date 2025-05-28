@@ -9,13 +9,6 @@ body {
   color: #333;
 }
 
-/* iframe של ההדר */
-iframe#headerIframe {
-  width: 100%;
-  height: 100px;
-  border: none;
-  margin-bottom: 20px;
-}
 
 /* קונטיינר */
 .container {
@@ -79,3 +72,14 @@ iframe#headerIframe {
   font-size: 0.95rem;
   color: #555;
 }
+
+/* iframe של header */
+#headerIframe {
+  width: 100%;
+  height: 80px;
+  border: none;
+  background-color: #ffb6c1; /* ורוד תואם */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+

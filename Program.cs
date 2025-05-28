@@ -22,8 +22,12 @@ class Program
       database.Hotels.Add(hotel1);
 
       var hotel2 = new Hotel("Araka hall", "/website/images/araka.jpg", 1, "");
-      hotel2.MapUrl = "https://www.google.com/maps/embed?pb=...2";
+      hotel2.MapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.0201132568072!2d34.775296024524685!3d32.09574207395565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4c0a8d208b2d%3A0x6b68746c79d3c3f0!2z15DXqNen15QgLSBBcmNhIHdlZGRpbmcgY2x1Yg!5e0!3m2!1siw!2sil!4v1748413490387!5m2!1siw!2sil";
       database.Hotels.Add(hotel2);
+
+      var hotel3 = new Hotel("Trask hall", "/website/images/Trask.jpg", 1, "");
+      hotel3.MapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3379.7848143876413!2d34.778304724524425!3d32.10210097395298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4cc868ca94e7%3A0x85f2f1f0756c12ba!2z15jXqNeQ16HXpyAtIFRyYXNrINeQ15XXnNedINeQ15nXqNeV16LXmdedINeR16rXnCDXkNeR15nXkQ!5e0!3m2!1siw!2sil!4v1748414171051!5m2!1siw!2sil";
+      database.Hotels.Add(hotel3);
 
       database.Cities.Add(new City("Petah Tikva", "/website/images/petah_tikva.jpg"));
       database.Cities.Add(new City("Haifa", "/website/images/Haifa.jpg"));

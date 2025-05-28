@@ -80,6 +80,11 @@ hotelImg.src = hotel.Image;
 
 console.log(hotel.MapUrl);
 mapIframe.src = hotel.MapUrl;
+// mapIframe.width = "300";
+// mapIframe.height = "200";
+// mapIframe.loading = "lazy";
+// mapIframe.referrerPolicy = "no-referrer-when-downgrade";
+// mapIframe.src = hotel.MapUrl;
 
 // if (hotel.MapUrl) {
 //   let iframe = document.createElement("iframe");
