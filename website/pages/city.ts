@@ -16,6 +16,8 @@ for (let i = 0; i < hotels.length; i++) {
 
     let img = document.createElement("img");
     img.src = hotel.Image;
+    img.width = 300;   
+    img.height = 200;
     a.appendChild(img);
 
     let div = document.createElement("div");
