@@ -51,6 +51,8 @@ h1 {
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 10px rgba(194, 125, 125, 0.1);
   color: rgb(85, 43, 43);
+  background-color: white; /* צבע רקע לבן */
 }
+
 
 

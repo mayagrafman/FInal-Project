@@ -40,7 +40,7 @@ class Program
       database.Hotels.Add(hotel5);
       
       
-      var hotel6 = new Hotel("Kley hall", "/website/images/Kley.jpg", 2, "");
+      var hotel6 = new Hotel("Clay hall", "/website/images/Clay.jpg", 2, "");
       hotel6.MapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3379.6728728676585!2d34.89969292452429!3d32.10512577395153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d379d25a69953%3A0xf759ce0302540ce4!2z16fXnNeZ15kg15DXmdeo15XXoteZ150!5e0!3m2!1siw!2sil!4v1748587578686!5m2!1siw!2sil";
       database.Hotels.Add(hotel6);
 

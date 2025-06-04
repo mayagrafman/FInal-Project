@@ -5,6 +5,32 @@
   <link rel="stylesheet" href="../styles/general.css">
   <link rel="stylesheet" href="hotel.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    #backButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #e3a4b7;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+
+    #backButton:hover {
+      background-color: #342d2d;
+    }
+
+    /* רק הוספת אור ורוד */
+    .container {
+      box-shadow: 0 0 30px 10px rgba(241, 175, 175, 0.911);
+    }
+  </style>
 </head>
 
 <body>
@@ -16,33 +42,30 @@
     <br>
     <input id="ratingInput" placeholder="0 - 5"><button id="ratingButton" disabled>Rate</button>
 
-    <br>
-    <br>
+    <br><br>
 
     <label>Reserve an event hall for </label>
     <input type="date" id="resInput"><button id="resButton" disabled>Reserve</button>
 
-
-    <br>
-    <br>
-
+    <br><br>
 
     <img id="hotelImg" width="200" height="200">
 
-    <br>
-    <br>
+    <br><br>
 
     <div>Already reserved on:</div>
     <ul id="resUl"></ul>
+
     <h3>Location on the map:</h3>
     <div id="mapDiv">
       <iframe id="mapIframe" src="" width="300" height="300" style="border:0;" referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
-
   </div>
 
-
+  <button id="backButton" onclick="location.href='index.html'">
+    Back to main page ➡️
+  </button>
 
   <script type="module" src="hotel.js"></script>
 </body>

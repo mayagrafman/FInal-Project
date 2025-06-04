@@ -26,12 +26,12 @@ body {
   text-align: center;
   font-size: 1.8rem; /* גודל מוקטן */
   font-weight: 900;
-  color: #ff69b4; /* ורוד עז */
+  color: #fb8d8e; /* ורוד עז */
   margin-bottom: 30px;
   text-shadow:
     1px 1px 0 #fff,
-    2px 2px 0 #e75480,
-    3px 3px 0 #d63b79; /* אפקט תלת מימד של עומק */
+    2px 2px 0 #fd8e90,
+    3px 3px 0 #ffe2e8; /* אפקט תלת מימד של עומק */
   animation: popIn 1s ease-in-out;
 }
 /* אנימציה עדינה לכניסת הכותרת */
