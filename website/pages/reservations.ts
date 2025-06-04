@@ -19,6 +19,8 @@ for (let i = 0; i < reservations.length; i++) {
 
   let img = document.createElement("img");
   img.src = res.Hotel.Image;
+  img.width = 200;
+  img.height = 120;
   div.appendChild(img);
 
   let hotelCityDiv = document.createElement("div");

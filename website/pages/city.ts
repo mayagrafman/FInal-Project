@@ -22,5 +22,6 @@ for (let i = 0; i < hotels.length; i++) {
 
     let div = document.createElement("div");
     div.innerText = hotel.Name;
+    div.classList.add("hotel-name"); // ✅ הוספת קלאס לעיצוב שם האולם
     a.appendChild(div);
 }
