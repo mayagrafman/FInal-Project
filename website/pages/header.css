@@ -53,6 +53,26 @@ h1 {
   color: rgb(85, 43, 43);
   background-color: white; /* צבע רקע לבן */
 }
-
-
+ 
+ #logOutButton, 
+ #resButton{
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(194, 125, 125, 0.1);
+  color: rgb(85, 43, 43);
+  background-color: #fff4f8;
+ }
+#greetingDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+}
 
