@@ -46,7 +46,6 @@ input[type="text"] {
   -webkit-text-security: disc;
 }
 
-/* כפתור התחברות עם Glow ורוד חזק */
 button#loginButton {
   background-color: #5b86e5;
   color: white;
