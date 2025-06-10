@@ -80,21 +80,7 @@ hotelImg.src = hotel.Image;
 
 console.log(hotel.MapUrl);
 mapIframe.src = hotel.MapUrl;
-// mapIframe.width = "300";
-// mapIframe.height = "200";
-// mapIframe.loading = "lazy";
-// mapIframe.referrerPolicy = "no-referrer-when-downgrade";
-// mapIframe.src = hotel.MapUrl;
 
-// if (hotel.MapUrl) {
-//   let iframe = document.createElement("iframe");
-//   iframe.width = "300";
-//   iframe.height = "200";
-//   iframe.loading = "lazy";
-//   iframe.referrerPolicy = "no-referrer-when-downgrade";
-//   iframe.src = hotel.MapUrl;
-//   mapDiv.appendChild(iframe);
-// } 
 
 if (userId != null) {
   let ratingValue = await send("getRating", [userId, hotelId]) as string | null;

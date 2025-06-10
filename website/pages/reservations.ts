@@ -23,9 +23,14 @@ for (let i = 0; i < reservations.length; i++) {
   img.height = 120;
   div.appendChild(img);
 
-  let hotelCityDiv = document.createElement("div");
-  hotelCityDiv.innerText = res.Hotel.Name + ", " + res.Hotel.City.Name;
-  div.appendChild(hotelCityDiv);
+
+let hotelCityDiv = document.createElement("div");
+hotelCityDiv.innerText = "event hall: " + res.Hotel.Name;
+let cityDiv = document.createElement("div");
+cityDiv.innerText = "city: " + res.Hotel.City.Name;
+div.appendChild(hotelCityDiv);
+div.appendChild(cityDiv);
+
 
   let dateDiv = document.createElement("div");
   dateDiv.innerText = res.Date;
