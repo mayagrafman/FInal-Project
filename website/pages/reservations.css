@@ -6,6 +6,9 @@ a {
     flex-direction: row;
     
   }
+  h2{
+    color: #d89b9b;
+  }
   
   img {
     border-radius: 10px;

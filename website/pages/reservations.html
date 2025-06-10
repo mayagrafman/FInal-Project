@@ -5,15 +5,42 @@
   <link rel="stylesheet" href="../styles/general.css">
   <link rel="stylesheet" href="reservations.css">
   <title>Index Page</title>
+  <style>
+    
+    /* כפתור חזרה */
+    #backButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #e3a4b7;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    #backButton:hover {
+      background-color: #342d2d;
+    }
+  </style>
 </head>
 
 <body>
   <iframe id="headerIframe" src="header.html"></iframe>
 
   <div class="container">
-    <h2>My Reservations</h2>
+    <h2>My Reservations:</h2>
     <div id="reservationsDiv"></div>
   </div>
+
+    <!-- כפתור חזרה לעמוד הראשי -->
+  <button id="backButton" onclick="location.href='index.html'">
+    Back to main page ➡️
+  </button>
 
   <script type="module" src="reservations.js"></script>
 </body>

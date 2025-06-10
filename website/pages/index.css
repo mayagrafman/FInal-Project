@@ -78,5 +78,27 @@ img {
   box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.2);
 }
 
- 
+ /* עיצוב הקישור כך שלא ייראה כקישור */
+#citiesDiv a {
+  text-decoration: none; /* ללא קו תחתון */
+  color: black;           /* טקסט שחור */
+  display: block;         /* שיהיה בלוק שלם - חשוב לעיצוב אחיד */
+  text-align: center;     /* ממרכז את הטקסט */
+}
+
+/* טקסט שם העיר */
+#citiesDiv a div {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: 600;
+  color: black;
+  transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+/* כשהעכבר מעל שם העיר – הטקסט גדל */
+#citiesDiv a:hover div {
+  transform: scale(1.1);
+}
+
+
 
